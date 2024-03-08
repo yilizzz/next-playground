@@ -1,0 +1,37 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@ark-ui/react": "^2.2.3",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
+    "@types/node": "18.15.12",
+    "@types/react": "18.2.8",
+    "@types/react-dom": "18.0.11",
+    "next": "^14.1.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "5.0.4",
+    "zustand": "^4.5.2"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "~7.6.8",
+    "@storybook/addon-interactions": "~7.6.8",
+    "@storybook/addon-links": "~7.6.8",
+    "@storybook/blocks": "~7.6.8",
+    "@storybook/nextjs": "~7.6.8",
+    "@storybook/react": "~ 7.6.8",
+    "@storybook/testing-library": "^0.0.14-next.2",
+    "storybook": "~7.6.8"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}

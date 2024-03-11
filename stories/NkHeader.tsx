@@ -1,8 +1,9 @@
 'use client'
-import React, { useState } from "react";
+import React from "react";
 
 import styled from '@emotion/styled'
 import { Menu } from '@ark-ui/react'
+import { motion } from "framer-motion"
 
 const StHeaderRoot = styled.div(({ theme }) => ({
     backgroundColor: theme.backgroundColor,
@@ -34,50 +35,78 @@ const StHeaderMenu = styled.div(() => ({
 }))
 
 const StMenuTrigger = styled(Menu.Trigger)(() => ({
-
-    backgroundColor: "gray",
     padding: 10,
     width: "100%",
     height: "60%",
     borderRadius: 5,
-    border: "0.5px solid #B8B0B0",
+    cursor: "pointer"
 }))
-const StMenuItem = styled(Menu.Item)(() => ({
+const StMenuPositioner = styled(Menu.Positioner)(({ theme }) => ({
+    backgroundColor: theme.backgroundColor,
+    color: theme.color,
+    borderRadius: 5,
+    cursor: "pointer"
+}))
+
+const StMenuContent = styled(Menu.Content)(() => ({
     padding: 10,
-    width: "100%",
-    height: "100%",
+    width: 150,
+    height: 150,
     borderRadius: 5,
     border: "0.5px solid #B8B0B0",
-    color: "Teal"
+
+}))
+
+const StMenuItem = styled(Menu.Item)(() => ({
+    padding: 10,
+    fontSize: 14,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: "50%",
+    borderBottom: "0.5px solid #B8B0B0 "
 }))
 
 function NkHeader({ onColorChooseClicked }) {
-
-    const [colorChooseClicked, setColorChooseClicked] = useState(false)
     const handleChooseColor = (id) => {
         if (id.value === "chooseColor") {
-            setColorChooseClicked(true)
-            onColorChooseClicked(colorChooseClicked)
+            onColorChooseClicked(true)
         }
     }
     return (
         <StHeaderRoot>
             <StHeaderTitle>My Colleagues</StHeaderTitle>
+
             <StHeaderMenu>
                 <Menu.Root onSelect={(id) => handleChooseColor(id)}>
-                    <StMenuTrigger>Menu</StMenuTrigger>
-                    <Menu.Positioner>
-                        <Menu.Content>
-                            <StMenuItem id="chooseColor">Choose My Color</StMenuItem>
-                            {/* <Menu.Item id="undo">Undo</Menu.Item>
-                            <Menu.Item id="delivery" disabled>
-                                Delivery
-                            </Menu.Item>
-                            <Menu.Item id="unlink">Unlink</Menu.Item> */}
-                        </Menu.Content>
-                    </Menu.Positioner>
+                    <motion.div whileHover={{
+                        scale: 1.2,
+                        transition: { duration: 0.5 },
+                    }}
+                        whileTap={{ scale: 0.9 }}
+                        whileInView={{ opacity: 1 }}>
+                        <StMenuTrigger>Menu</StMenuTrigger>
+                    </motion.div>
+
+                    <StMenuPositioner>
+                        <motion.div
+                            initial={{ scale: 0.9 }}
+                            whileHover={{
+                                scale: 1.1,
+                                transition: { duration: 0.5 },
+                            }}
+                            whileTap={{ scale: 0.9 }}
+                            whileInView={{ opacity: 1 }}>
+                            <StMenuContent>
+                                <StMenuItem id="chooseColor">Choose My Color</StMenuItem>
+                            </StMenuContent>
+                        </motion.div>
+                    </StMenuPositioner>
+
                 </Menu.Root>
             </StHeaderMenu>
+
         </StHeaderRoot>
     )
 }

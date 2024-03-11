@@ -138,7 +138,7 @@ function NkColorPicker({ onValueChange, onColorDecided }) {
         format="rgba"
         value={currentValue}
         onValueChange={(details) => { setCurrentValue(details.valueAsString); onValueChange(details.valueAsString) }}
-        onValueChangeEnd={(details) => console.log(details)} defaultValue="#eb5e41"
+    // onValueChangeEnd={(details) => console.log(details)} defaultValue="#eb5e41"
     >
         {(api) => (
             <>

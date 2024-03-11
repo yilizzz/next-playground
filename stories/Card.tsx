@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { motion } from "framer-motion"
 
 
 const StCardRoot = styled.div(({ theme }) => ({
@@ -11,11 +12,28 @@ const StCardRoot = styled.div(({ theme }) => ({
     width: 300,
     height: 300,
     padding: 20,
-    borderRadius: 5,
-    border: "0.5px solid #B8B0B0",
     boxShadow: "0px 15px 15px rgba(0, 0, 0, 0.08),0px 30px 20px rgba(0, 0, 0, 0.06), 0px 45px 30px rgba(0, 0, 0, 0.04)",
     position: "relative"
 }))
+// Animate the StCardRoot component
+const AnimatedStCardRoot = ({ children }) => (
+    <StCardRoot as={motion.div}
+        animate={{
+            scale: [1, 0.8, 0.8, 0.8, 1],
+            rotate: [0, 90, 180, 270, 0],
+            borderRadius: ["0%", "50%", "50%", "50%", "0%"]
+        }}
+        transition={{
+            duration: 2,
+            ease: "easeInOut",
+            times: [0, 0.2, 0.5, 0.8, 1],
+            repeat: 0
+            // repeat: Infinity,
+            // repeatDelay: 1
+        }}>
+        {children}
+    </StCardRoot>
+);
 const StCardLabel = styled.div(() => ({
     textAlign: "center",
     fontFamily: "monospace",
@@ -41,9 +59,10 @@ const StCardPoints = styled.div(() => ({
 }))
 
 function NkCard({ label, group, points }) {
-    // const [currentValue, setCurrentValue] = useState('rgba(255, 87, 51, 0.8)')
+
     return (
-        <StCardRoot>
+
+        <AnimatedStCardRoot>
             <StCardLabel>
                 {label}
             </StCardLabel>
@@ -51,9 +70,10 @@ function NkCard({ label, group, points }) {
                 Group: {group}
             </StCardGroup>
             <StCardPoints>
-                Points to remember: {points}
+                Tips: {points}
             </StCardPoints>
-        </StCardRoot>
+        </AnimatedStCardRoot>
+
     )
 }
 

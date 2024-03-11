@@ -20,7 +20,5 @@ export const Default: Story = {
         label: "someone",
         group: "development front-end",
         points: "good",
-        bgColor: "black",
-        textColor: "white"
     },
 };

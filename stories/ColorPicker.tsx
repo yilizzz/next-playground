@@ -2,9 +2,9 @@ import styled from '@emotion/styled'
 import { ColorPicker } from '@ark-ui/react'
 import { useState } from 'react'
 
-function CustomDiv({ children, ...props }) {
-    return <div {...props}>{children}</div>
-}
+// function CustomDiv({ children, ...props }) {
+//     return <div {...props}>{children}</div>
+// }
 const StCustomDivStyle = {
     width: "100%",
     display: "flex",
@@ -13,14 +13,20 @@ const StCustomDivStyle = {
     alignItems: "center",
 }
 
-const StDivForValueOfHexOrAlpha = styled(CustomDiv)(() => ({
+// const StDivForValueOfHexOrAlpha = styled(CustomDiv)(() => ({
+//     ...StCustomDivStyle,
+//     width: "60%",
+//     marginBottom: 10
+
+// }))
+const StDivForValueOfHexOrAlpha = styled.div(() => ({
     ...StCustomDivStyle,
     width: "60%",
     marginBottom: 10
 
 }))
 
-const StDivForEyeDropperAndInputHexAndInputAlpha = styled(CustomDiv)(() => ({
+const StDivForEyeDropperAndInputHexAndInputAlpha = styled.div(() => ({
     ...StCustomDivStyle,
 
 }))
@@ -81,7 +87,7 @@ const StPickerAreaThumb = styled(ColorPicker.AreaThumb)(() => ({
 
 }))
 
-const StDivUnderContent = styled(CustomDiv)(() => ({
+const StDivUnderContent = styled.div(() => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -133,7 +139,7 @@ const StButton = styled.button(({ theme }) => ({
 }))
 function NkColorPicker({ onValueChange, onColorDecided }) {
     const [currentValue, setCurrentValue] = useState('rgba(255, 255, 255, 0.8)')
-    // const [isColorDecided, setIsColorDecided] = useState(false)
+
     return (<StPickerRoot
         format="rgba"
         value={currentValue}

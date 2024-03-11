@@ -54,7 +54,7 @@ export default function Page() {
 
   const setColor = useColorStore((state) => state.setColor);
 
-  const handleValueChange = (newValue) => {
+  const handleValueChange = (newValue: string) => {
     setColor(newValue);
   };
 

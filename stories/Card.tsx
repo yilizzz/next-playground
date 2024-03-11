@@ -1,8 +1,9 @@
 import styled from '@emotion/styled'
 import { motion } from "framer-motion"
+import { PropsWithoutRef, JSX } from 'react';
 
 
-const StCardRoot = styled.div(({ theme }) => ({
+const StCardRoot = styled(motion.div)(({ theme }) => ({
     backgroundColor: theme.backgroundColor,
     color: theme.color,
     display: "flex",
@@ -16,12 +17,15 @@ const StCardRoot = styled.div(({ theme }) => ({
     position: "relative"
 }))
 // Animate the StCardRoot component
-const AnimatedStCardRoot = ({ children }) => (
-    <StCardRoot as={motion.div}
+const AnimatedStCardRoot = ({ children }: PropsWithoutRef<JSX.IntrinsicElements['div'] & {
+    amICool: boolean
+}>) => (
+    <StCardRoot
         animate={{
             scale: [1, 0.8, 0.8, 0.8, 1],
             rotate: [0, 90, 180, 270, 0],
-            borderRadius: ["0%", "50%", "50%", "50%", "0%"]
+            borderRadius: ["0%", "50%", "50%", "50%", "0%"],
+
         }}
         transition={{
             duration: 2,
@@ -62,7 +66,7 @@ function NkCard({ label, group, points }) {
 
     return (
 
-        <AnimatedStCardRoot>
+        <AnimatedStCardRoot amICool={true}>
             <StCardLabel>
                 {label}
             </StCardLabel>

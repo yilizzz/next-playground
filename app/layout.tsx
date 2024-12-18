@@ -1,13 +1,14 @@
-'use client'
+"use client";
 import "./globals.css";
-import { ThemeProvider } from '@emotion/react'
+import { ThemeProvider } from "@emotion/react";
 import { useColorStore } from "./store/useColorStore";
-import '@emotion/react'
-
-declare module '@emotion/react' {
+import "@emotion/react";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./queries/query";
+declare module "@emotion/react" {
   export interface Theme {
-    backgroundColor: string
-    color: string
+    backgroundColor: string;
+    color: string;
   }
 }
 // export const metadata = {
@@ -18,26 +19,28 @@ declare module '@emotion/react' {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   // const currentColor = useStore(useColorStore, (state) => state.color);
   const currentColor = useColorStore((state) => state.color);
   const themes = {
     light: {
-      backgroundColor: 'white',
-      color: currentColor
+      //backgroundColor: "white",
+      color: currentColor,
     },
     dark: {
-      backgroundColor: 'black',
-      color: currentColor
-    }
-  }
-  const theme = themes['light']
+      backgroundColor: "black",
+      color: currentColor,
+    },
+  };
+  const theme = themes["light"];
   return (
-    <ThemeProvider theme={theme}>
-      <html lang="en">
-        <body>{children}</body>
-      </html>
-    </ThemeProvider>
-  )
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <html lang="en">
+          <body>{children}</body>
+        </html>
+      </ThemeProvider>
+    </QueryClientProvider>
+  );
 }

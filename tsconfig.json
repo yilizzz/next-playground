@@ -27,7 +27,7 @@
         "./*"
       ]
     },
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "jsxImportSource": "@emotion/react"
   },
   "include": [
